@@ -1,4 +1,4 @@
-/******/ (() => { // webpackBootstrap
+require('./sourcemap-register.js');/******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
 /***/ 7799:
@@ -60839,26 +60839,34 @@ async function run() {
         try {
             await cleanRegistry(registryName, packages);
         }
-        catch { }
+        catch (e) {
+            core.info(`[warning] ${e.stack}`);
+        }
         try {
             await cleanBin();
         }
-        catch { }
+        catch (e) {
+            core.info(`[warning] ${e.stack}`);
+        }
         try {
             await cleanGit(packages);
         }
-        catch { }
+        catch (e) {
+            core.info(`[warning] ${e.stack}`);
+        }
         try {
             await cleanTarget(packages);
         }
-        catch { }
+        catch (e) {
+            core.info(`[warning] ${e.stack}`);
+        }
         core.info(`Saving paths:\n    ${savePaths.join("\n    ")}`);
         core.info(`In directory:\n    ${process.cwd()}`);
         core.info(`Using key:\n    ${key}`);
         await cache.saveCache(savePaths, key);
     }
     catch (e) {
-        core.info(`[warning] ${e.message}`);
+        core.info(`[warning] ${e.stack}`);
     }
 }
 run();
@@ -60954,3 +60962,4 @@ async function macOsWorkaround() {
 module.exports = __webpack_exports__;
 /******/ })()
 ;
+//# sourceMappingURL=index.js.map
