@@ -60853,7 +60853,7 @@ async function run() {
     }
     catch (e) {
         setCacheHitOutput(false);
-        core.info(`[warning] ${e.message}`);
+        core.info(`[warning] ${e.stack}`);
     }
 }
 function setCacheHitOutput(cacheHit) {

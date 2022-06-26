@@ -60836,29 +60836,39 @@ async function run() {
         await macOsWorkaround();
         const registryName = await getRegistryName();
         const packages = await getPackages();
-        try {
-            await cleanRegistry(registryName, packages);
+        if (registryName) {
+            try {
+                await cleanRegistry(registryName, packages);
+            }
+            catch (e) {
+                core.info(`[warning] ${e.stack}`);
+            }
         }
-        catch { }
         try {
             await cleanBin();
         }
-        catch { }
+        catch (e) {
+            core.info(`[warning] ${e.stack}`);
+        }
         try {
             await cleanGit(packages);
         }
-        catch { }
+        catch (e) {
+            core.info(`[warning] ${e.stack}`);
+        }
         try {
             await cleanTarget(packages);
         }
-        catch { }
+        catch (e) {
+            core.info(`[warning] ${e.stack}`);
+        }
         core.info(`Saving paths:\n    ${savePaths.join("\n    ")}`);
         core.info(`In directory:\n    ${process.cwd()}`);
         core.info(`Using key:\n    ${key}`);
         await cache.saveCache(savePaths, key);
     }
     catch (e) {
-        core.info(`[warning] ${e.message}`);
+        core.info(`[warning] ${e.stack}`);
     }
 }
 run();
@@ -60869,6 +60879,9 @@ async function getRegistryName() {
         core.warning(`got multiple registries: "${files.join('", "')}"`);
     }
     const first = files.shift();
+    if (!first) {
+        return null;
+    }
     return external_path_default().basename(external_path_default().dirname(first));
 }
 async function cleanBin() {
