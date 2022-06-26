@@ -8,7 +8,7 @@ import os from "os";
 import path from "path";
 
 process.on("uncaughtException", (e) => {
-  core.info(`[warning] ${e.message}`);
+  core.info(`[warning] qqq ${e.message}`);
   if (e.stack) {
     core.info(e.stack);
   }

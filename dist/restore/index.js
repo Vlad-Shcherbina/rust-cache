@@ -60619,7 +60619,7 @@ var external_path_default = /*#__PURE__*/__nccwpck_require__.n(external_path_);
 
 
 process.on("uncaughtException", (e) => {
-    core.info(`[warning] ${e.message}`);
+    core.info(`[warning] qqq ${e.message}`);
     if (e.stack) {
         core.info(e.stack);
     }

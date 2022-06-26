@@ -60619,7 +60619,7 @@ var external_os_default = /*#__PURE__*/__nccwpck_require__.n(external_os_);
 
 
 process.on("uncaughtException", (e) => {
-    core.info(`[warning] ${e.message}`);
+    core.info(`[warning] qqq ${e.message}`);
     if (e.stack) {
         core.info(e.stack);
     }
